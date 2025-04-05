@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Post</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Crear un Nuevo Post</h1>
+    </header>
+    <main>
+        <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="title">Título del Post:</label>
+            <input type="text" id="title" name="title" placeholder="Escribe el título del post" required>
+
+            <label for="content">Contenido del Post:</label>
+            <textarea id="content" name="content" placeholder="Escribe el contenido del post" required></textarea>
+
+            <label for="image">Subir Imagen:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <button type="submit">Guardar Post</button>
+        </form>
+
+        <div class="image-preview">
+            <h2>Vista Previa de la Imagen Subida</h2>
+            {% if image_url %}
+                <img src="{{ image_url }}" alt="Imagen subida">
+                <form action="{% url 'upload_image' %}" method="post" style="margin-top: 1rem;">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_image" value="true">
+                    <input type="hidden" name="image_path" value="{{ image_url }}">
+                    <button type="submit" class="delete-button">Eliminar Imagen</button>
+                </form>
+            {% else %}
+                <p>No se ha subido ninguna imagen aún.</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

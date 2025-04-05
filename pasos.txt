@@ -1,0 +1,16 @@
+Pasos para crear un proyecto django>
+
+    1. Creamos el entorno virtusl
+        python -m venv . (.nombre del proyecto)
+
+    2. Instalamos el django
+        pip install django
+
+    3. Instalamos el pillow(para las imagenes)
+        pip install pillow
+
+    4. Creamos el proyecto
+        django-admin startproject (nombre del proyecto .)
+
+    5. Creamos la app
+        python manage.py startapp (nombre del proyecto)
