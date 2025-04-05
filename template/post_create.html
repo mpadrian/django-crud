@@ -16,13 +16,13 @@
             {% csrf_token %}
             <label for="title">Título del Post:</label>
             <input type="text" id="title" name="title" placeholder="Escribe el título del post" required>
-
+        
             <label for="content">Contenido del Post:</label>
             <textarea id="content" name="content" placeholder="Escribe el contenido del post" required></textarea>
-
+        
             <label for="image">Subir Imagen:</label>
             <input type="file" id="image" name="image" accept="image/*" required>
-
+        
             <button type="submit">Guardar Post</button>
         </form>
 

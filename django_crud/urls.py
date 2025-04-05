@@ -23,6 +23,7 @@ from post import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('post-create/', views.upload_image, name='upload_image'),  # Página de creación de posts
     path('', views.upload_image, name='upload_image'),
 ]
 
