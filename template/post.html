@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos los Posts</title>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Todos los Posts</h1>
+    </header>
+    <main>
+        <div class="post-list">
+            {% for post in posts %}
+                <div class="post-item">
+                    <img src="{{ post.image_url }}" alt="Imagen del Post">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.content }}</p>
+                </div>
+            {% empty %}
+                <p>No hay posts disponibles.</p>
+            {% endfor %}
+        </div>
+        <div class="navigation-buttons">
+            <a href="{% url 'home' %}" class="btn">Volver a la Página Principal</a>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="/post-create/" class="btn">Crear otro post</a>
+        </div>
+    </main>
+</body>
+</html>

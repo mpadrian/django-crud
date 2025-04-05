@@ -2,10 +2,14 @@ import os
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 
+# Lista para almacenar los posts temporalmente
+posts = []
+
 def home(request):
     return render(request, 'home.html')
 
 def upload_image(request):
+    global posts
     image_url = None
     if request.method == 'POST':
         # Manejar eliminación de imagen
@@ -26,8 +30,12 @@ def upload_image(request):
             filename = fs.save(image.name, image)
             image_url = fs.url(filename)
 
-            # Aquí puedes guardar los datos del post (título, contenido, URL de la imagen) en la base de datos
-            print(f"Título: {title}, Contenido: {content}, Imagen: {image_url}")
+            # Agregar el post a la lista de posts
+            posts.append({
+                'title': title,
+                'content': content,
+                'image_url': image_url
+            })
 
             # Renderizar la página con la imagen subida
             return render(request, 'post_create.html', {
@@ -38,3 +46,7 @@ def upload_image(request):
 
     # Si no es POST, simplemente renderizar la página
     return render(request, 'post_create.html', {'image_url': image_url})
+
+def post_list(request):
+    global posts
+    return render(request, 'post.html', {'posts': posts})
