@@ -1,12 +1,22 @@
 import os
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+from .models import Publicacion
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.shortcuts import render
+from .forms import PublicacionForm
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import DetailView, ListView
 
 # Lista para almacenar los posts temporalmente
 posts = []
 
 def home(request):
-    return render(request, 'home.html')
+    posts = Publicacion.objects.all()  # Obtener todos los posts
+    return render(request, 'home.html', {'posts': posts})
 
 def upload_image(request):
     global posts
@@ -47,6 +57,18 @@ def upload_image(request):
     # Si no es POST, simplemente renderizar la página
     return render(request, 'post_create.html', {'image_url': image_url})
 
-def post_list(request):
-    global posts
-    return render(request, 'post.html', {'posts': posts})
+class PostListView(ListView):
+    model = Publicacion
+    template_name ='post.html'
+    context_object_name = 'posts' 
+
+class PostUpdate(UpdateView):
+    model = Publicacion
+    fields = ['titulo', 'descripcion', 'imagen']
+    template_name = 'post_update.html'
+    succces_url = reverse_lazy('post_list')
+
+class PostDetail(DetailView):
+    model = Publicacion
+    template_name = 'post_detail.html'  # Nombre de la plantilla que se usará
+    context_object_name = 'post' 

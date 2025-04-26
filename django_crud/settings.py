@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'post.apps.PostConfig',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,9 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGIN_REDIRECT_URL = 'home'      # adónde va tras hacer login
+LOGOUT_REDIRECT_URL = 'login' # adónde va tras hacer logout
 
 WSGI_APPLICATION = 'django_crud.wsgi.application'
 

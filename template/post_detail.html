@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Post</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{{ publicacion.titulo }}</h1>
+    </header>
+    <main>
+        <div class="post-detail">
+            <p><strong>Autor:</strong> {{ post.autor }}</p>
+            <p><strong>Descripción:</strong> {{ post.descripcion }}</p>
+            {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" alt="Imagen del Post">
+            {% endif %}
+            <p><strong>Fecha de Creación:</strong> {{ post.fecha_creacion }}</p>
+        </div>
+        <div class="navigation-buttons">
+            <a href="{% url 'post_list' %}" class="btn">Volver a la Lista de Posts</a>
+            <a href="{% url 'post_update' post.pk %}" class="btn">Editar Post</a>
+        </div>
+    </main>
+</body>
+</html>

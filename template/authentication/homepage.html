@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Bienvenido a MiApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" 
+    rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/auth-css/homepage.css' %}">
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>¡Bienvenido a <span>MiApp</span>!</h1>
+      <p>Gestiona tus contenidos de forma inteligente y atractiva.</p>
+      <div class="cta-buttons">
+        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a>
+        <a href="{% url 'signup' %}" class="btn btn-outline">Regístrate</a>
+      </div>
+    </div>
+  </header>
+</body>
+</html>
