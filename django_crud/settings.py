@@ -71,8 +71,8 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'home'      # adónde va tras hacer login
-LOGOUT_REDIRECT_URL = 'login' # adónde va tras hacer logout
+LOGIN_REDIRECT_URL = '/homepage'      # adónde va tras hacer login
+LOGOUT_REDIRECT_URL = 'home' # adónde va tras hacer logout
 
 WSGI_APPLICATION = 'django_crud.wsgi.application'
 
